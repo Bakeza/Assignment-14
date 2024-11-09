@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     void Start()
     {
-        Player player1 = new Player();
-        Player player2 = new Player();
+        // Creating Player and Enemy objects
+        Player player = new Player("Subhi", 80);
+        Enemy enemy = new Enemy("Zarifeh", 100);
 
-        player1.InitializePlayer("Alice", 50);
-        player2.InitializePlayer("Bob", 75);
+        // Print initial Name and Health
+        Debug.Log($"Player: {player.Name}, Health: {player.Health}");
+        Debug.Log($"Enemy: {enemy.Name}, Health: {enemy.Health}");
 
-        player1.Heal(20);
-        player2.Heal(true);
+        // Test the Heal method
+        player.Heal(15);
+        Debug.Log($"Player after healing: {player.Name}, Health: {player.Health}");
 
-        Player.ShowPlayerCount();
+        // Test the Attack method
+        enemy.Attack(player, 20);
+        Debug.Log($"Player after attack: {player.Name}, Health: {player.Health}");
     }
-
-
 }

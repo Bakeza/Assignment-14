@@ -1,38 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    public string playerName;
-    public int health;
-    public static int playerCount = 0;
-
-    public void InitializePlayer(string name, int initialHealth)
-    {
-        playerName = name;
-        health = initialHealth;
-        playerCount++;
-    }
+    public Player(string name, int health) : base(name, health) { }
 
     public void Heal(int amount)
     {
-        health += amount;
-        Debug.Log($"{playerName} healed by {amount}. Current health: {health}.");
+        Health += amount;
+        if (Health > 100) Health = 100;
     }
-
-    public void Heal(bool fullRestore)
-    {
-        if (fullRestore)
-        {
-            health = 100;
-            Debug.Log($"{playerName} fully restored to full health.");
-        }
-    }
-
-    public static void ShowPlayerCount()
-    {
-        Debug.Log($"Total number of players: {playerCount}");
-    }
-
 }
+
